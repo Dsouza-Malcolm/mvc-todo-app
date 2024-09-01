@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./css/index.css" type="text/css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+    <title>Todos App</title>
+  </head>
+  <body>
+    <div
+      id="app"
+      class="bg-sky dark:bg-midnight h-screen w-full font-mulish flex justify-center items-center"
+    >
+      <div
+        class="container w-full h-full md:max-w-xl md:h-[500px] bg-white dark:bg-midnight rounded-lg p-5"
+      >
+        <div>
+          <h1 class="text-midnight font-black text-2xl">TODOS</h1>
+        </div>
+
+        <div class="mt-8">
+          <div class="flex justify-between items-center mx-2 mb-5">
+            <div>
+              <h2 class="font-bold text-lg">Today</h2>
+              <p>
+                <svg
+                  class="w-4 h-4 text-gray-600 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span id="tasks-remaining"></span>
+              </p>
+            </div>
+            <div class="flex gap-6">
+              <select
+                id="sort"
+                class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option selected value="priority">By Priority</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="recent">Recently Added</option>
+              </select>
+              <button
+                id="add-task-btn"
+                data-modal-target="crud-modal"
+                type="button"
+                class="bg-midnight w-14 flex justify-center items-center rounded-lg"
+              >
+                <svg class="w-5 h-5">
+                  <use
+                    class="stroke-white stroke-2"
+                    href="./img/icons.svg#plus"
+                  ></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="overflow-y-auto h-80 custom-scroll">
+            <ul id="todo-container">
+              <li class="hover:bg-gray-100 cursor-pointer py-2">
+                <div class="grid grid-cols-6">
+                  <div class="justify-self-center self-center cursor-pointer">
+                    <svg class="w-5 h-5">
+                      <use
+                        class="stroke-red-500 stroke-[4]"
+                        href="./img/icons.svg#circle"
+                      ></use>
+                    </svg>
+                  </div>
+                  <div class="task-body col-span-4">
+                    <h3 class="font-bold text-base">Go To GYM</h3>
+                    <p>Push ups workout session</p>
+                  </div>
+                  <div class="justify-self-center self-center cursor-pointer">
+                    <svg class="w-5 h-5">
+                      <use
+                        class="stroke-black/50 stroke-2"
+                        href="./img/icons.svg#trash"
+                      ></use>
+                    </svg>
+                  </div>
+                </div>
+                <!-- <hr class="my-4" /> -->
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main modal -->
+      <div
+        id="crud-modal"
+        tabindex="-1"
+        aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      >
+        <div class="relative p-4 w-full max-w-md max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div
+              class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+            >
+              <h3
+                id="modal-title"
+                class="text-lg font-semibold text-gray-900 dark:text-white"
+              >
+                Create New Task
+              </h3>
+              <button
+                type="button"
+                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                id="modal-close-btn"
+              >
+                <svg
+                  class="w-3 h-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 14 14"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                  />
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+            </div>
+
+            <!-- Modal body -->
+            <form id="submit-form" class="p-4 md:p-5">
+              <input type="text" name="id" id="task-id" hidden />
+              <div class="grid gap-4 mb-4 grid-cols-6">
+                <div class="col-span-4">
+                  <label
+                    for="title"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Task Name</label
+                  >
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="GYM"
+                    required
+                  />
+                </div>
+                <div class="col-span-2">
+                  <label
+                    for="priority"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Priority</label
+                  >
+                  <select
+                    id="priority"
+                    name="priority"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  >
+                    <option selected value="P4">Priority</option>
+                    <option value="P1">Priority 1</option>
+                    <option value="P2">Priority 2</option>
+                    <option value="P3">Priority 3</option>
+                    <option value="P4">Priority 4</option>
+                  </select>
+                </div>
+                <div class="col-span-full">
+                  <label
+                    for="description"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Description</label
+                  >
+                  <input
+                    type="text"
+                    name="description"
+                    id="description"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="Push ups workout session"
+                  />
+                </div>
+                <!-- DATE PICKER -->
+
+                <div class="relative max-w-sm col-span-3">
+                  <div
+                    class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+                  >
+                    <svg
+                      class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    id="datepicker-actions"
+                    datepicker
+                    datepicker-buttons
+                    datepicker-orientation="top left"
+                    datepicker-autoselect-today
+                    type="text"
+                    name="dueDate"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Select date"
+                  />
+                </div>
+
+                <!-- TIME PICKER -->
+
+                <div class="relative col-span-3">
+                  <div
+                    class="absolute inset-y-0 end-0 top-0 flex items-center pe-3.5 pointer-events-none"
+                  >
+                    <svg
+                      class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    type="time"
+                    name="dueTime"
+                    id="time"
+                    class="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Select Time"
+                  />
+                </div>
+              </div>
+
+              <hr class="mb-4" />
+              <!-- data-modal-target="crud-modal" -->
+              <!-- data-modal-hide="crud-modal" -->
+              <button
+                type="submit"
+                class="text-white inline-flex items-center bg-ocean hover:bg-midnight focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                <svg
+                  class="me-1 -ms-1 w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Add Task
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./js/v1/controller.js"></script>
+  </body>
+</html>
