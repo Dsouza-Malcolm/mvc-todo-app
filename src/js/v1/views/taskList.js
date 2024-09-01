@@ -2,7 +2,7 @@ import View from "../View";
 import TodoItemView from "./todoItemView";
 
 class TaskList extends View {
-  _parentElement = document.getElementById("todo-list");
+  _parentElement = document.getElementById("todo-container");
   #sortBtn = document.getElementById("sort");
 
   _generateMarkup() {

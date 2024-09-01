@@ -2,7 +2,7 @@ import View from "../View";
 import icons from "url:../../../img/icons.svg";
 
 class TodoItemView extends View {
-  _parentElement = document.getElementById("todo-list");
+  _parentElement = document.getElementById("todo-container");
 
   _generateMarkup() {
     const markup = `

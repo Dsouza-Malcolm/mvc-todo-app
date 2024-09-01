@@ -6,7 +6,7 @@ class AddTaskView extends ModalView {
 
   constructor() {
     super();
-    this._parentElement = document.getElementById("todo-list");
+    this._parentElement = document.getElementById("todo-container");
     this._addHandlerToggleModal();
   }
 
