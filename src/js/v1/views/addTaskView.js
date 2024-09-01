@@ -1,4 +1,4 @@
-import ModalView from "./ModalView";
+import ModalView from "./modalView";
 import TodoItemView from "./todoItemView";
 
 class AddTaskView extends ModalView {

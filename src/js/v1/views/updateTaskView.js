@@ -1,4 +1,4 @@
-import ModalView from "./ModalView";
+import ModalView from "./modalView";
 
 class UpdateTaskView extends ModalView {
   constructor() {

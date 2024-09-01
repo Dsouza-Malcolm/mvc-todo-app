@@ -10,7 +10,7 @@ import AddTaskView from "./views/addTaskView";
 import TaskList from "./views/taskList";
 import TodoItemView from "./views/todoItemView";
 import UpdateTaskView from "./views/updateTaskView";
-import ModalView from "./views/ModalView";
+import ModalView from "./views/modalView";
 
 const TASK = {
   title: "",
