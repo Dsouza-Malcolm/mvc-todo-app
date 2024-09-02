@@ -1,4 +1,4 @@
-import View from '../View';
+import View from '../view';
 import icons from 'url:../../../img/icons.svg';
 
 export default class TodoItemView extends View {

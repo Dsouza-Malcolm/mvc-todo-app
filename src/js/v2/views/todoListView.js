@@ -1,4 +1,4 @@
-import View from '../View';
+import View from '../view';
 import TodoItemView from './TodoItemView';
 
 export default class TodoListView extends View {
