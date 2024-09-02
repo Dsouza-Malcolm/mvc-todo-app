@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <defs>
   <symbol id="clock" viewBox="0 0 24 24" fill="none"  stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock" >
     <circle cx="12" cy="12" r="10"></circle>
     <polyline points="12 6 12 12 16 14"></polyline>
@@ -21,7 +22,7 @@
   </symbol>
 
   <!-- Sun Icon -->
-  <symbol id="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
+  <symbol id="sun" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun">
     <circle cx="12" cy="12" r="5"></circle>
     <line x1="12" y1="1" x2="12" y2="3"></line>
     <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -72,12 +73,13 @@
     <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
   </symbol>
 
-  <svg id="circle-tick" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle">
+  <symbol id="circle-tick" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle">
     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
     <polyline points="22 4 12 14.01 9 11.01"></polyline>
-  </svg>
+  </symbol>
 
-  <svg id="tick-circle" fill="none" viewBox="0 0 24 24"  stroke-linecap="round" stroke-linejoin="round">
+  <symbol id="tick-circle" fill="none" viewBox="0 0 24 24"  stroke-linecap="round" stroke-linejoin="round">
     <path d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-  </svg>
+  </symbol>
+  </defs>
 </svg>

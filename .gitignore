@@ -1,5 +1,4 @@
 node_modules/
 .parcel-cache/
 dist/
-src/js/v2/
 mvc.js

@@ -6,26 +6,74 @@
     <link href="./css/index.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
     <title>Todos App</title>
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (
+        localStorage.getItem('color-theme') === 'dark' ||
+        (!('color-theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
   </head>
   <body>
     <div
       id="app"
-      class="bg-sky dark:bg-midnight h-screen w-full font-mulish flex justify-center items-center"
+      class="bg-sky dark:bg-ocean h-screen w-full font-mulish flex justify-center items-center"
     >
       <div
         class="container w-full h-full md:max-w-xl md:h-[500px] bg-white dark:bg-midnight rounded-lg p-5"
       >
-        <div>
-          <h1 class="text-midnight font-black text-2xl">TODOS</h1>
+        <div class="flex justify-between items-center mx-2">
+          <h1 class="text-midnight dark:text-white font-black text-2xl">
+            TODOS
+          </h1>
+
+          <button
+            id="theme-toggle"
+            type="button"
+            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 ring-gray-200 ring-2"
+          >
+            <svg
+              id="theme-toggle-dark-icon"
+              class="hidden w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+              ></path>
+            </svg>
+            <svg
+              id="theme-toggle-light-icon"
+              class="hidden w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
         </div>
 
         <div class="mt-8">
           <div class="flex justify-between items-center mx-2 mb-5">
             <div>
-              <h2 class="font-bold text-lg">Today</h2>
-              <p>
+              <h2 class="font-bold text-black dark:text-white text-xl">
+                Today
+              </h2>
+              <p class="flex items-center gap-1 text-sm mt-1">
                 <svg
-                  class="w-4 h-4 text-gray-600 dark:text-white"
+                  id="tick-circle"
+                  class="opacity-0 w-4 h-4 text-gray-600 dark:text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -50,18 +98,20 @@
                 class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 <option selected value="priority">By Priority</option>
+                <option value="active">Active Tasks</option>
                 <option value="upcoming">Upcoming</option>
                 <option value="recent">Recently Added</option>
+                <option value="completed">Completed Tasks</option>
               </select>
               <button
                 id="add-task-btn"
                 data-modal-target="crud-modal"
                 type="button"
-                class="bg-midnight w-14 flex justify-center items-center rounded-lg"
+                class="bg-midnight dark:bg-white w-12 h-12 md:w-14 flex justify-center items-center rounded-lg fixed bottom-10 right-10 md:static"
               >
-                <svg class="w-5 h-5">
+                <svg class="w-6 h-6">
                   <use
-                    class="stroke-white stroke-2"
+                    class="stroke-white dark:stroke-midnight stroke-2"
                     href="./img/icons.svg#plus"
                   ></use>
                 </svg>
@@ -70,7 +120,7 @@
           </div>
           <div class="overflow-y-auto h-80 custom-scroll">
             <ul id="todo-container">
-              <li class="hover:bg-gray-100 cursor-pointer py-2">
+              <!-- <li class="hover:bg-gray-100 cursor-pointer py-2">
                 <div class="grid grid-cols-6">
                   <div class="justify-self-center self-center cursor-pointer">
                     <svg class="w-5 h-5">
@@ -93,8 +143,8 @@
                     </svg>
                   </div>
                 </div>
-                <!-- <hr class="my-4" /> -->
-              </li>
+                <hr class="my-4" /> 
+              </li> -->
             </ul>
           </div>
         </div>
@@ -275,13 +325,13 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                Add Task
+                <span id="modal-btn-text">Add Task</span>
               </button>
             </form>
           </div>
         </div>
       </div>
     </div>
-    <script type="module" src="./js/v1/controller.js"></script>
+    <script type="module" src="./js/v2/controller.js"></script>
   </body>
 </html>
