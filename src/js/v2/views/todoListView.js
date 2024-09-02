@@ -1,5 +1,5 @@
 import View from '../view';
-import TodoItemView from './TodoItemView';
+import TodoItemView from './todoItemView';
 
 export default class TodoListView extends View {
   _parentElement = document.getElementById('todo-container');
