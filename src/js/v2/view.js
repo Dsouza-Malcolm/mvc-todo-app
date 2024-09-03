@@ -21,8 +21,8 @@ export default class View {
     if (totalTask > 0) {
       this.#svgIcon.classList.remove('opacity-0');
       this.#taskCount.textContent = `${totalTask} Task${
-        totalTask > 1
-      } ? 's' : ''`;
+        totalTask > 1 ? 's' : ''
+      }`;
     }
 
     if (totalTask === 0) {

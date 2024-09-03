@@ -1,18 +1,8 @@
 export default class DarkThemeView {
-  #themeToggleDarkIcon;
-  // = document.getElementById('theme-toggle-dark-icon');
-  #themeToggleLightIcon;
-  // = document.getElementById('theme-toggle-light-icon');
-  #themeToggleBtn;
-  // = document.getElementById('theme-toggle');
+  #themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+  #themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+  #themeToggleBtn = document.getElementById('theme-toggle');
   constructor() {
-    this.#themeToggleBtn = document.getElementById('theme-toggle');
-    this.#themeToggleLightIcon = document.getElementById(
-      'theme-toggle-light-icon'
-    );
-    this.#themeToggleDarkIcon = document.getElementById(
-      'theme-toggle-dark-icon'
-    );
     this.addHandlerToggleDarkMode();
     this.init();
   }
@@ -23,7 +13,6 @@ export default class DarkThemeView {
       (!('color-theme' in localStorage) &&
         window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
-      console.log(this.#themeToggleLightIcon);
       this.#themeToggleLightIcon.classList.remove('hidden');
     } else {
       this.#themeToggleDarkIcon.classList.remove('hidden');
