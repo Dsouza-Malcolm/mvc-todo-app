@@ -1,9 +1,18 @@
 export default class DarkThemeView {
-  #themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-  #themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-  #themeToggleBtn = document.getElementById('theme-toggle');
-
+  #themeToggleDarkIcon;
+  // = document.getElementById('theme-toggle-dark-icon');
+  #themeToggleLightIcon;
+  // = document.getElementById('theme-toggle-light-icon');
+  #themeToggleBtn;
+  // = document.getElementById('theme-toggle');
   constructor() {
+    this.#themeToggleBtn = document.getElementById('theme-toggle');
+    this.#themeToggleLightIcon = document.getElementById(
+      'theme-toggle-light-icon'
+    );
+    this.#themeToggleDarkIcon = document.getElementById(
+      'theme-toggle-dark-icon'
+    );
     this.addHandlerToggleDarkMode();
     this.init();
   }
