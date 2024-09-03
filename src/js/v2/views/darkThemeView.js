@@ -14,6 +14,7 @@ export default class DarkThemeView {
       (!('color-theme' in localStorage) &&
         window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
+      console.log(this.#themeToggleLightIcon);
       this.#themeToggleLightIcon.classList.remove('hidden');
     } else {
       this.#themeToggleDarkIcon.classList.remove('hidden');
