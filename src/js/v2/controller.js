@@ -10,6 +10,7 @@ import {
   generateUniqueId,
   getDateStatus,
 } from './helper.js';
+import 'core-js/stable';
 
 class Controller {
   constructor() {
