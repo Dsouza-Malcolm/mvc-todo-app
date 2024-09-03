@@ -96,30 +96,34 @@
                 ></span>
               </div>
             </div>
-            <div class="flex gap-6">
-              <select
-                id="sort"
-                class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              >
-                <option selected value="priority">By Priority</option>
-                <option value="active">Active Tasks</option>
-                <option value="upcoming">Upcoming</option>
-                <option value="recent">Recently Added</option>
-                <option value="completed">Completed Tasks</option>
-              </select>
-              <button
-                id="add-task-btn"
-                data-modal-target="crud-modal"
-                type="button"
-                class="bg-midnight dark:bg-white w-12 h-12 md:w-14 flex justify-center items-center rounded-lg fixed bottom-10 right-10 md:static"
-              >
-                <svg class="w-6 h-6">
-                  <use
-                    class="stroke-white dark:stroke-midnight stroke-2"
-                    href="img/icons.svg#plus"
-                  ></use>
-                </svg>
-              </button>
+            <div class="flex items-center gap-6">
+              <div>
+                <select
+                  id="sort"
+                  class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option selected value="priority">By Priority</option>
+                  <option value="active">Active Tasks</option>
+                  <option value="upcoming">Upcoming</option>
+                  <option value="recent">Recently Added</option>
+                  <option value="completed">Completed Tasks</option>
+                </select>
+              </div>
+              <div>
+                <button
+                  id="add-task-btn"
+                  data-modal-target="crud-modal"
+                  type="button"
+                  class="bg-midnight dark:bg-white w-12 h-12 md:w-14 md:h-14 flex justify-center items-center rounded-lg fixed bottom-10 right-10 md:static"
+                >
+                  <svg class="w-6 h-6">
+                    <use
+                      class="stroke-white dark:stroke-midnight stroke-2"
+                      href="img/icons.svg#plus"
+                    ></use>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
           <div class="overflow-y-auto h-80 custom-scroll">
