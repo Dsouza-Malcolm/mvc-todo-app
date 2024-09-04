@@ -43,16 +43,14 @@ export default class ModalView {
       dueTimeInput.value = task.dueTime || '';
       modalTitle.textContent = 'Update Task';
       modalBtnText.textContent = 'Update Task';
-
-      console.log('task');
     } else {
-      console.log('else');
       modalTitle.textContent = 'Add new Task';
       modalBtnText.textContent = 'Add Task';
       this._clearForm();
     }
 
     this.#modal.show();
+    titleInput.focus();
   }
 
   _closeModal() {
